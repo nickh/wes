@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'authlogic/test_case'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -24,6 +25,14 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  def test_sign_in(user)
+    UserSession.create(user)
+  end
+
+  def test_sign_out
+    session=UserSession.find && session.destroy
+  end
 end
 
 RSpec::Matchers.define :have_errors_on do |expected|
