@@ -1,0 +1,31 @@
+/* application.scss */
+body {
+  background-color: #ebebeb;
+}
+
+.main {
+  header {
+    padding: 15px 0px;
+    background: url(/images/sm-doctor.jpg) no-repeat;
+    background-color: #ededff;
+    border-bottom: 1px solid black;
+    h1 {
+      display: inline;
+      padding-left: 40px;
+    }
+  }
+  .content {
+    padding: 10px 15px;
+  }
+  width: 100%;
+  background-color: #fff;
+  -webkit-box-shadow: black 0px 0px 10px;
+}
+
+.debug {
+  margin-top: 15px;
+  color: #a44;
+  border: 1px solid #888;
+  background-color: #ccc;
+  -webkit-box-shadow: black 0px 0px 10px;
+}

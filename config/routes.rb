@@ -6,5 +6,5 @@ Wes::Application.routes.draw do
   match '/signout', :to => 'user_sessions#delete'
   resource :user_session
 
-  root :to => 'users#index'
+  root :to => 'doctors#index'
 end

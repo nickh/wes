@@ -6,16 +6,24 @@
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
     %title Health CaReview
 
-    = stylesheet_link_tag :all
+    = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
+    = stylesheet_link_tag 'application',      :media => 'screen'
+    = stylesheet_link_tag 'blueprint/print',  :media => 'print'
     = javascript_include_tag :defaults
    
     %LINK{'REL' => 'SHORTCUT ICON', 'HREF' => '/favicon.ico'}/
    
   %body
-    %h1 All We Need Is Just A Little Patients
-   
-    = yield
+    .container
+      %div.span-4
+      %div.span-16.main
+        %header
+          %h1 All We Need Is Just A Little Patients
+        .content
+          = yield
+      %div.span-4.last
 
-    - if Rails.env.development?
-      = debug(params)
-      = debug(current_user)
+      - if Rails.env.development?
+        %div.span-24.last.debug
+          = debug(params)
+          = debug(current_user)
