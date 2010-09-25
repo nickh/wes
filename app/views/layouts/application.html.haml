@@ -12,8 +12,10 @@
     %LINK{'REL' => 'SHORTCUT ICON', 'HREF' => '/favicon.ico'}/
    
   %body
-    %h1 Health CaReview: The Patient Trust Network
+    %h1 All We Need Is Just A Little Patients
    
     = yield
 
-    = debug(params) if Rails.env.development?
+    - if Rails.env.development?
+      = debug(params)
+      = debug(current_user)
