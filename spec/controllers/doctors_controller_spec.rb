@@ -23,7 +23,7 @@ describe DoctorsController do
     context 'when signed in' do
       before(:each) do
         @doctors = [Factory(:doctor), Factory(:doctor)]
-        test_sign_in(Factory.create(:user))
+        test_sign_in(Factory(:user))
       end
 
       it 'succeeds' do

@@ -40,3 +40,19 @@ RSpec::Matchers.define :have_errors_on do |expected|
     !object.errors[expected].nil?
   end
 end
+
+RSpec::Matchers.define :have_many do |expected|
+  match do |obj_or_class|
+    klass = obj_or_class.is_a?(Class) ? obj_or_class : obj_or_class.class
+    klass.reflections.has_key?(expected) &&
+      klass.reflections[expected].macro == :has_many
+  end
+end
+
+RSpec::Matchers.define :belong_to do |expected|
+  match do |obj_or_class|
+    klass = obj_or_class.is_a?(Class) ? obj_or_class : obj_or_class.class
+    klass.reflections.has_key?(expected) &&
+      klass.reflections[expected].macro == :belongs_to
+  end
+end

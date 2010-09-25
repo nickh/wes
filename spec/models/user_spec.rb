@@ -23,6 +23,12 @@ describe User do
     end
   end
 
+  describe 'associations' do
+    it 'has many reviews' do
+      User.should have_many(:reviews)
+    end
+  end
+
   describe 'validation' do
     it 'ensures email is unique' do
       user1 = Factory.create(:user)
