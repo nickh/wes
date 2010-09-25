@@ -22,4 +22,13 @@ describe User do
       end
     end
   end
+
+  describe 'validation' do
+    it 'ensures email is unique' do
+      user1 = Factory.create(:user)
+      user2 = Factory.build(:user, :email => user1.email)
+      user2.should_not be_valid
+      user2.should have_errors_on(:email)
+    end
+  end
 end

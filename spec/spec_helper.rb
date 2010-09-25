@@ -25,3 +25,9 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 end
+
+RSpec::Matchers.define :have_errors_on do |expected|
+  match do |object|
+    !object.errors[expected].nil?
+  end
+end
