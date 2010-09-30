@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :signed_in?
 
   private
+    def signed_in?
+      !current_user_session.nil?
+    end
+
     def current_user_session
       @current_user_session ||= UserSession.find
     end

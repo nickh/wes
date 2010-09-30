@@ -1,0 +1,5 @@
+%h2= (@review.new_record?? 'Add a' : 'Update your') + ' Doctor Review'
+
+= form_for [@doctor, @review] do |f|
+  = render 'shared/error_messages', :object => f.object
+  = render 'form', :f => f

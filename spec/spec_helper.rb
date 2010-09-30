@@ -30,8 +30,15 @@ RSpec.configure do |config|
     UserSession.create(user)
   end
 
+  def integration_sign_in(user)
+    visit signin_path
+    fill_in :email,    :with => user.email
+    fill_in :password, :with => user.password
+    click_button
+  end
+
   def test_sign_out
-    session=UserSession.find && session.destroy
+    session.destroy if session=UserSession.find
   end
 end
 

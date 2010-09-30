@@ -1,4 +1,10 @@
-%h1 This is a list of doctors, know any?
+%h2 This is a list of doctors, know any?
 
-%ul
-  = render @doctors
+%table
+  %tr
+    %th Name
+    %th Average Rating
+    %th Most Recent Review
+  =render @doctors
+
+=will_paginate

@@ -14,8 +14,29 @@ body {
     .main header h1 {
       display: inline;
       padding-left: 40px; }
+    .main header nav {
+      float: right;
+      padding-right: 10px; }
+      .main header nav .user-info {
+        float: right;
+        clear: both; }
+      .main header nav ul {
+        float: right;
+        clear: both;
+        margin-right: 0px; }
+        .main header nav ul li {
+          list-style-type: none;
+          display: inline-block; }
   .main .content {
     padding: 10px 15px; }
+    .main .content dl dt {
+      float: left;
+      clear: left;
+      width: 60px; }
+    .main .content dl dd {
+      margin-left: 70px; }
+    .main .content dl.even {
+      background: #E5ECF9; }
 
 .debug {
   margin-top: 15px;

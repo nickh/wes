@@ -37,4 +37,21 @@ describe User do
       user2.should have_errors_on(:email)
     end
   end
+
+  describe '#full_name' do
+    it 'returns the full name' do
+      user = User.new(:first_name => 'Full', :last_name => 'Name')
+      user.full_name.should == 'Full Name'
+    end
+
+    it 'returns if the first name is nil' do
+      user = User.new(:first_name => nil, :last_name => 'Name')
+      user.full_name.should == 'Name'
+    end
+
+    it 'returns if the last name is nil' do
+      user = User.new(:first_name => 'First', :last_name => nil)
+      user.full_name.should == 'First'
+    end
+  end
 end

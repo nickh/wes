@@ -30,6 +30,15 @@ describe Doctor do
       @user   = Factory(:user)
     end
 
+    it 'returns nil if there are no reviews' do
+      @doctor.average_rating.should be_nil
+    end
+
+    it 'returns nil if there are no reviews with ratings' do
+      @doctor.reviews.create!(:user => @user, :rating => nil)
+      @doctor.average_rating.should be_nil
+    end
+
     it 'computes the average rating value from associated reviews' do
       @doctor.reviews.create!(:user => @user, :rating => 3)
       @doctor.reviews.create!(:user => @user, :rating => 5)

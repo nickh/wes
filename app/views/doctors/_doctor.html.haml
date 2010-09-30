@@ -1,1 +1,16 @@
-%li= link_to doctor.name, doctor
+%tr
+  %td= link_to doctor.name, doctor
+  %td
+    = doctor.average_rating.nil?? "No rating" : doctor.average_rating.to_s
+    = '(' + doctor.reviews.size.to_s + ' reviews)'
+  - if doctor.reviews.empty?
+    %td
+      Nobody has reviewed this doctor yet.
+      = link_to "Be the first!", new_doctor_review_path(doctor)
+  - else
+    %td
+      - review = doctor.reviews.first
+      - user   = review.user
+      - link   = user == current_user ? 'you' : (user.full_name.blank?? user.email : user.full_name)
+      = truncate(review.detail, :length => 80)
+      = h('(by ') + link_to(link, user) + ' ' + time_ago_in_words(review.updated_at) + h(' ago)')

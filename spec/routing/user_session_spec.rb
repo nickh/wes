@@ -5,7 +5,7 @@ describe 'User session routing' do
     assert_routing '/signin', :controller => 'user_sessions', :action => 'new'
   end
 
-  it 'routes /signout to #delete' do
-    assert_routing '/signout', :controller => 'user_sessions', :action => 'delete'
+  it 'routes /signout to #destroy' do
+    assert_routing '/signout', :controller => 'user_sessions', :action => 'destroy'
   end
 end

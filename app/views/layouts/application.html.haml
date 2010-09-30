@@ -6,6 +6,7 @@
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
     %title Health CaReview
 
+    = csrf_meta_tag
     = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
     = stylesheet_link_tag 'application',      :media => 'screen'
     = stylesheet_link_tag 'blueprint/print',  :media => 'print'
@@ -17,8 +18,9 @@
     .container
       %div.span-4
       %div.span-16.main
-        %header
-          %h1 All We Need Is Just A Little Patients
+        =render 'layouts/header'
+        - flash.each do |key,value|
+          =content_tag :div, value, :class => "flash #{key}"
         .content
           = yield
       %div.span-4.last

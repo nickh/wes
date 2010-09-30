@@ -1,0 +1,14 @@
+%header
+  %h1 All We Need Is Just A Little Patients
+  %nav
+    - if signed_in?
+      %span.user-info Welcome, #{current_user.first_name}!
+    %ul
+      %li= link_to 'Home', root_path
+      - if signed_in?
+        %li= link_to 'Doctors', doctors_path
+        %li= link_to 'Profile', current_user
+        %li= link_to 'Settings', edit_user_path(current_user)
+        %li= link_to 'Sign out', signout_path, :method => :delete
+      - else
+        %li= link_to 'Sign in', signin_path

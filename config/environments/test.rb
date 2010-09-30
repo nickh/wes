@@ -33,3 +33,8 @@ Wes::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
+
+Webrat.configure do |config|
+  config.mode = :rack
+  config.open_error_files = false
+end

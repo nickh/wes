@@ -1,0 +1,15 @@
+%h2= "Reviews of #{h(@doctor.name)}"
+
+.doctor-info
+  %h3= "Average Rating: #{h(@doctor.average_rating)}"
+  - @reviews.each do |review|
+    %dl{:class => cycle('even','odd')}
+      %dt Reviewer:
+      %dd
+        = review.user.full_name
+        = '(' + time_ago_in_words(review.updated_at) + ' ago)'
+      %dt Rating:
+      %dd= review.rating
+      %dt Detail:
+      %dd= review.detail
+  = will_paginate @reviews

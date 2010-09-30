@@ -13,9 +13,39 @@ body {
       display: inline;
       padding-left: 40px;
     }
+    nav {
+      float: right;
+      padding-right: 10px;
+      .user-info {
+        float: right;
+        clear: both;
+      }
+      ul {
+        float: right;
+        clear: both;
+        margin-right: 0px;
+        li {
+          list-style-type: none;
+          display: inline-block;
+        }
+      }
+    }
   }
   .content {
     padding: 10px 15px;
+    dl {
+      dt {
+        float: left;
+        clear: left;
+        width: 60px;
+      }
+      dd {
+        margin-left: 70px;
+      }
+    }
+    dl.even {
+      background: #E5ECF9;
+    }
   }
   width: 100%;
   background-color: #fff;

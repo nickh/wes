@@ -22,9 +22,9 @@ describe UserSessionsController do
       user_session.user.should == @user
     end
 
-    it 'redirects to the show page' do
+    it 'redirects to the home page' do
       post :create, :user_session => {:email => @user.email, :password => @user.password}
-      response.should redirect_to(user_path(@user))
+      response.should redirect_to(root_path)
     end
   end
 
