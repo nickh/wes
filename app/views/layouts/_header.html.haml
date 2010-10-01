@@ -1,8 +1,12 @@
 %header
   %h1 All We Need Is Just A Little Patients
   %nav
-    - if signed_in?
-      %span.user-info Welcome, #{current_user.first_name}!
+    %span.user-info
+      - if signed_in?
+        Welcome, #{current_user.first_name}!
+      - else
+        Don't have an account?
+        = link_to 'Sign Up', new_user_path
     %ul
       %li= link_to 'Home', root_path
       - if signed_in?
