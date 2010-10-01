@@ -107,4 +107,90 @@ describe DoctorsController do
       end
     end
   end
+
+  describe 'GET /doctors/new => #new' do
+    context 'when not signed in' do
+      before(:each) do
+        test_sign_out
+      end
+
+      it 'denies access' do
+        get :new
+        response.should redirect_to(signin_path)
+      end
+    end
+
+    context 'when signed in as a non-admin user' do
+      before(:each) do
+        test_sign_in(Factory(:user))
+      end
+
+      it 'denies access' do
+        get :new
+        response.should redirect_to(doctors_path)
+      end
+    end
+
+    context 'when signed in as an admin user' do
+      before(:each) do
+        test_sign_in(Factory(:user, :admin => true))
+      end
+
+      it 'succeeds' do
+        get :new
+        response.should be_success
+      end
+    end
+  end
+
+  describe 'POST /doctors/ => #create' do
+    before(:each) do
+      @new_doctor = {:name => 'Arthur Coddington'}
+    end
+
+    context 'when not signed in' do
+      before(:each) do
+        test_sign_out
+      end
+
+      it 'denies access' do
+        post :create, :doctor => @new_doctor
+        response.should redirect_to(signin_path)
+      end
+    end
+
+    context 'when signed in as a non-admin user' do
+      before(:each) do
+        test_sign_in(Factory(:user))
+      end
+
+      it 'denies access' do
+        post :create, :doctor => @new_doctor
+        response.should redirect_to(doctors_path)
+      end
+
+      it 'does not create a doctor' do
+        lambda do
+          post :create, :doctor => @new_doctor
+        end.should_not change(Doctor, :count)
+      end
+    end
+
+    context 'when signed in as an admin user' do
+      before(:each) do
+        test_sign_in(Factory(:user, :admin => true))
+      end
+
+      it 'succeeds' do
+        post :create, :doctor => @new_doctor
+        response.should be_redirect
+      end
+
+      it 'creates a doctor' do
+        lambda do
+          post :create, :doctor => @new_doctor
+        end.should change(Doctor, :count).by(1)
+      end
+    end
+  end
 end

@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
       !current_user_session.nil?
     end
 
+    def admin_user?
+      signed_in? and current_user.admin?
+    end
+
     def current_user_session
       @current_user_session ||= UserSession.find
     end
@@ -20,6 +24,13 @@ class ApplicationController < ActionController::Base
         store_location
         flash[:notice] = 'You must be signed in to access this page'
         redirect_to signin_path
+        return false
+      end
+    end
+
+    def ensure_admin_user
+      unless admin_user?
+        redirect_to doctors_path
         return false
       end
     end

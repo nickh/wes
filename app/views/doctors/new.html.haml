@@ -1,0 +1,8 @@
+%h2 Add A Doctor
+
+=form_for @doctor do |f|
+  .field
+    =f.label :name
+    %br
+    =f.text_field :name
+    =f.submit 'Add Doctor'
