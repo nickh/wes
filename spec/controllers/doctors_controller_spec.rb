@@ -46,6 +46,28 @@ describe DoctorsController do
         response.should have_selector('a', :href => '/doctors?page=2', :content => '2')
         response.should have_selector('a', :href => '/doctors?page=2', :content => 'Next')
       end
+
+      context 'with search parameters' do
+        before(:each) do
+          @adam  = Factory(:doctor, :name => 'Adam West')
+          @bill  = Factory(:doctor, :name => 'Bill McFadden')
+          @chuck = Factory(:doctor, :name => 'Chuck Carmichael')
+          @dean  = Factory(:doctor, :name => 'Dean Venture')
+          @james = Factory(:doctor, :name => 'James Dean')
+
+          @query = 'dean'
+        end
+
+        it 'sets the query' do
+          get :index, :q => @query
+          assigns[:query].should == @query
+        end
+
+        it 'filters the doctors' do
+          get :index, :q => @query
+          assigns[:doctors].should == [@dean, @james]
+        end
+      end
     end
   end
 

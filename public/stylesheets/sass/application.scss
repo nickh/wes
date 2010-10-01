@@ -33,6 +33,13 @@ body {
   }
   .content {
     padding: 10px 15px;
+    h2 {
+      display: inline;
+      padding: 10px 0px;
+    }
+    form.search {
+      float: right;
+    }
     dl {
       dt {
         float: left;

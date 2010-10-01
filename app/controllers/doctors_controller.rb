@@ -2,7 +2,9 @@ class DoctorsController < ApplicationController
   before_filter :ensure_signed_in
 
   def index
-    @doctors = Doctor.paginate(:page => params[:page])
+    @query     = params[:q]
+    conditions = @query.nil?? {} : {:conditions => ["name LIKE ?", "%#{@query}%"]}
+    @doctors   = Doctor.find(:all, conditions).paginate(:page => params[:page])
   end
 
   def show

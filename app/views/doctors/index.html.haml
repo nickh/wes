@@ -1,4 +1,7 @@
 %h2 This is a list of doctors, know any?
+=form_tag(doctors_path, :method => :get, :class => 'search') do |f|
+  = text_field_tag :q, @query
+  = submit_tag 'Search'
 
 %table
   %tr

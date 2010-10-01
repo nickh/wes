@@ -29,6 +29,11 @@ body {
           display: inline-block; }
   .main .content {
     padding: 10px 15px; }
+    .main .content h2 {
+      display: inline;
+      padding: 10px 0px; }
+    .main .content form.search {
+      float: right; }
     .main .content dl dt {
       float: left;
       clear: left;
