@@ -16,10 +16,14 @@ describe User do
   end
 
   describe 'attributes' do
-    [:first_name, :last_name].each do |attr|
+    [:first_name, :last_name, :admin?].each do |attr|
       it "responds to #{attr}" do
         User.new.should respond_to(attr)
       end
+    end
+
+    it 'disables admin by default' do
+      User.new.admin?.should be_false
     end
   end
 
